@@ -1,4 +1,4 @@
-package com.algorithm.demo03;
+package com.algorithm.sort;
 
 import org.junit.Test;
 
@@ -7,14 +7,14 @@ import java.util.Arrays;
 /**
  * 冒泡排序
  */
-public class BubbleSort_01 {
+public class BubbleSort {
 
     @Test
     public void test01() {
-        Integer[] arr = {32,1,5,87,14,53,64,76,8,15};
+        Integer[] arr = {10,5,3,87,14,53,64,76,8,15};
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length - 1; j++) {
-                if(arr[j] < arr[j+1]){
+                if(arr[j] > arr[j+1]){
                     replace(j,j+1,arr);
                 }
             }

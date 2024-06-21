@@ -1,4 +1,4 @@
-package com.algorithm.demo01;
+package demo01;
 
 public class TimeTool {
 

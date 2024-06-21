@@ -1,4 +1,4 @@
-package com.algorithm.demo03;
+package com.algorithm.sort;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * 选择排序
  */
-public class SelectionSort_02 {
+public class SelectionSort {
 
     @Test
     public void test01(){

@@ -1,4 +1,4 @@
-package com.algorithm.demo03;
+package com.algorithm.sort;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * 插入排序
  */
-public class InsertionSort_03 {
+public class InsertionSort {
 
     @Test
     public  void test01() {
@@ -26,16 +26,13 @@ public class InsertionSort_03 {
         for (int i = 1; i < sort.length; i++) {
             int key = sort[i];
             int j = i - 1;
-
             // 将大于key的值向后移
             while (j >= 0 && sort[j] > key){
                 sort[j+1] = sort[j];
                 j = j - 1;
             }
-
             // 将元素插入到合适的位置
             sort[j+1] = key;
-
         }
         return sort;
     }
