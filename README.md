@@ -338,13 +338,187 @@ public class SelectionSort_02 {
 
 ## 3.3 插入排序(Insertion Sort)
 
+```java
+package com.algorithm.sort;
+
+import org.junit.Test;
+
+import java.util.Arrays;
+
+/**
+ * 插入排序
+ */
+public class InsertionSort {
+
+    @Test
+    public  void test01() {
+        // 定义一个未排序的数组
+        Integer[] sort = {102,3,42,5,43,65,12,43,59,11,5,20};
+        Integer[] integers = installSort(sort);
+        System.out.println("integers = " + Arrays.toString(integers));  // 102 3 42 5   3 102 42 5   3 42 102 5    3 5 42 102
+    }
+
+    /**
+     * 插入排序
+     * @param sort 需要排序的数组
+     * @return
+     */
+    public Integer[] installSort(Integer[] sort){
+        for (int i = 1; i < sort.length; i++) {
+            int key = sort[i];
+            int j = i - 1;
+            // 将大于key的值向后移
+            while (j >= 0 && sort[j] > key){
+                sort[j+1] = sort[j];
+                j = j - 1;
+            }
+            // 将元素插入到合适的位置
+            sort[j+1] = key;
+        }
+        return sort;
+    }
+
+}
+
+```
+
 ## 3.4 希尔排序(Shell Sort)
+
+```java
+package com.algorithm.sort;
+
+
+/**
+ * @author: WuPeng
+ * @description: 希尔排序
+ * @date: 2024/10/7 10:59
+ */
+
+public class ShellSort {
+    /**
+     * 思路: 1.对未排序数组进行分组
+     *      2.对分组使用插入排序
+     *      3.再次进行分组并使用插入排序
+     * 希尔排序目是对插入排序的优化, 目的是将乱序数组先变为一个准有序数组, 最后再次使用插入排序使其成为一个有序数组
+     * @param arr 未排序数组
+     */
+    public static void shellSort(int[] arr) {
+        int n = arr.length;
+        // 按照数组长度的一半进行分组 gap为分组间隔
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            // 分组进行插入排序
+            for (int i = gap; i < n; i++) {
+                int temp = arr[i];
+                int j;
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                    arr[j] = arr[j - gap];
+                }
+                arr[j] = temp;
+            }
+        }
+    }
+
+    public static void shellSort2(int[] arr) {
+        int size = arr.length;
+        // 对数组进行分组 gap为分组间隔
+        for(int gap = size/2;gap > 0;gap/=2){
+            // 对分组元素分别进行插入排序
+            for (int i = gap; i < size; i++) {
+                int temp = arr[i];
+                int j;
+                for (j = i;j >= gap && arr[j - gap] > temp; j -= gap) {
+                    arr[j]=arr[j - gap];
+                }
+                arr[j]=temp;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int[] arr = {12, 34,4, 54, 2,8, 3};
+        shellSort2(arr);
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+```
+
+
 
 ## 3.5 快速排序(Quick Sort)
 
 ## 3.6 归并排序(Merge Sort)
 
 ## 3.7 堆排序(Heap Sort)
+
+```java
+package com.algorithm.sort;
+
+/**
+ * @author: WuPeng
+ * @description: 堆排序
+ * @date: 2024/9/28 11:00
+ */
+
+public class HeapSort {
+
+    public static void main(String[] args) {
+        int[] arr = {6, 8, 13, 5, 14, 21, 19};
+        heapSort(arr);
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
+    // 排序过程
+    public static void heapSort(int[] arr){
+        int size = arr.length;
+        // 构建大顶堆
+        for (int i = size/2-1; i >= 0; i--) {  // -- 切换堆的层级
+            heapify(arr,size,i);
+        }
+
+        // 排序过程
+        for(int i = size - 1; i > 0; i--){
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            // 对剩余的元素继续构造大顶堆
+            heapify(arr,i,0);
+        }
+
+    }
+
+    public static void heapify(int[] arr,int n,int i){
+        int largest = i;
+        int left = 2*i + 1;
+        int right = 2*i + 2;
+
+        // 如果左子节点大于父节点,则更新largest
+        if(left < n && arr[left] >= arr[largest]){
+            largest = left;
+        }
+
+        // 如果右子节点大于父节点,则更新largest
+        if(right < n && arr[right] >= arr[largest]){
+            largest = right;
+        }
+
+        // 如果 largest 不是根节点,则交换并继续调整
+        if(largest != i){
+            int temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+            heapify(arr,n,largest);
+        }
+
+    }
+}
+```
+
+
 
 ## 3.8 基数排序(Radix Sort)
 
