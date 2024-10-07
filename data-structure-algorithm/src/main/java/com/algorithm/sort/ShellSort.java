@@ -1,7 +1,5 @@
 package com.algorithm.sort;
 
-<<<<<<< HEAD
-import java.util.Arrays;
 
 /**
  * @author: WuPeng
@@ -55,11 +53,4 @@ public class ShellSort {
             System.out.print(num + " ");
         }
     }
-=======
-/**
- * 希尔排序
- */
-public class ShellSort {
-
->>>>>>> 69b07c9775cc5b5ace55f23fafbdc482007bffa5
 }
